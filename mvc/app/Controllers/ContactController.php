@@ -38,6 +38,14 @@ class ContactController
 
                 break;
 
+            case ($page == 'edit'):
+                $contactId = filter_input(INPUT_GET, 'contact_id', FILTER_SANITIZE_SPECIAL_CHARS);
+                    
+                $contact = $this->database->getById('contacts', $contactId);
+
+                require $this->viewRoot . '/edit.php';
+                
+                break;
             case ($page == 'delete'):
                 require 'Views/delete.php';
 

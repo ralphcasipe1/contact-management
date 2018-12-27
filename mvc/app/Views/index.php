@@ -2,7 +2,7 @@
 
 <h1>List of Contacts</h1>
 
-<a href="index.php?page=create">Add new contacts</a>
+<a href="index.php?page=create">Add new contact</a>
 
 <table>
     <thead>

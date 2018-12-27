@@ -16,7 +16,8 @@
   <dd><?php print $contact['email'] ?></dd>
 </dl>
 
-<a href="#">Update</a>
 <a href="#">Delete</a>
+<a href="index.php?page=edit">Edit</a>
+
 
 <?php require_once 'components/_footer.php' ?>
