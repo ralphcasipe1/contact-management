@@ -38,6 +38,7 @@ function checkCreateForm() {
   checkForm('createContactForm', 'saveButton');
 }
 
-function checkUpdateForm() {
-  checkForm('updateContactForm', 'updateButton');
-}
+/* function onLoad(file) {
+  console.log(file)
+  updateContactForm.photo.value = file;
+} */

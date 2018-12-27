@@ -82,6 +82,7 @@ if (!empty($_POST)) {
     $email = $_POST['email'];
         
     $valid = true;
+
     if (empty($name)) {
         $nameError = 'Please enter Name';
         $valid = false;
@@ -104,12 +105,14 @@ if (!empty($_POST)) {
 } else {
     $name = $data['name'];
 
+    // $photo = $data['photo'];
+
     $company = $data['company'];
     
     $phone = $data['phone'];
 
     $address = $data['address'];
-
+    
     $email = $data['email'];
 }
 
@@ -128,7 +131,11 @@ if (!empty($_POST)) {
 >
     <div>
         <label>Photo</label>
-        <input type="file" name="photo">
+        <input 
+            type="file" 
+            name="photo"
+            accept="image/png, image/jpeg"
+        >
     </div>
 
     <div class="row">
@@ -189,7 +196,7 @@ if (!empty($_POST)) {
     <div class="form-action">
         <a href="index.php" class="button">Cancel</a>
 
-        <button type="submit" class="button button-success" id="updateButton" disabled>Update</button>
+        <button type="submit" class="button button-success" id="updateButton">Update</button>
     </div>
     
 </form>
