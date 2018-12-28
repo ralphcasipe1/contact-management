@@ -20,8 +20,6 @@ class Database
     {
         $statement = $this->pdo->prepare("SELECT * FROM $table WHERE contact_id = $id");
 
-        $statement->bindValue(':id', $id);
-
         $success = $statement->execute();
 
         $row = $statement->fetch(PDO::FETCH_ASSOC);
@@ -68,28 +66,20 @@ class Database
 
     public function update($table, $id, $data)
     {
-        if (isset($data['id'])) unset($data['id']);
-
+        if (isset($data['contact_id']))
+            unset($data['contact_id']);
         $columns = array_keys($data);
-
-        $columns = array_map(function($item) {
-            return $item . '=:' . $item;
+        $columns = array_map(function($item){
+            return $item.'=:'.$item;
         }, $columns);
-
         $bindingSql = implode(',', $columns);
-
-        $sql = "UPDATE $table SET $bindingSql WHERE id = :id";
-
-        $statement = $this->pdo->prepare($sql);
-
-        $data['id'] = $id;
-
-        foreach ($data as $key => $value) {
-            $statement->bindValue(':' . $key, $value);
+        $sql = "UPDATE $table SET $bindingSql WHERE contact_id = :contact_id";
+        $stm = $this->pdo->prepare($sql);
+        $data['contact_id'] = $id;
+        foreach ($data as $key => $value){
+            $stm->bindValue(':'. $key, $value);
         }
-
-        $status = $statement->execute();
-
+        $status = $stm->execute();
         return $status;
     }
 
@@ -100,8 +90,8 @@ class Database
 
     public function save($table, $data)
     {
-        if (isset($data['id'])) {
-            $this->update($table, $data['id'], $data);
+        if (isset($data['contact_id'])) {
+            $this->update($table, $data['contact_id'], $data);
         } else {
             return $this->create($table, $data);
         }

@@ -39,13 +39,30 @@ class ContactController
                 break;
 
             case ($page == 'edit'):
-                $contactId = filter_input(INPUT_GET, 'contact_id', FILTER_SANITIZE_SPECIAL_CHARS);
+                if (isset($_GET['contact_id'])) {
+                    $contactId = $_GET['contact_id'];
                     
-                $contact = $this->database->getById('contacts', $contactId);
+                    $contact = $this->database->getById('contacts', $contactId);
 
-                require $this->viewRoot . '/edit.php';
+                    require $this->viewRoot . '/edit.php';
+                }
                 
+
                 break;
+
+            case ($page == 'update'):
+                if (isset($_POST['update'])) {
+                    $contact =  new Contact($_POST);
+                    
+                    $updateContact = $this->update($contact);
+
+                    header('Location: index.php?page=show&store_contact=' . (bool) $updateContact . '&contact_id=' . $contact->getId());
+
+                    exit();
+                }
+
+                break;
+
             case ($page == 'delete'):
                 require 'Views/delete.php';
 

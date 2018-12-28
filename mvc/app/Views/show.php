@@ -17,7 +17,7 @@
 </dl>
 
 <a href="#">Delete</a>
-<a href="index.php?page=edit">Edit</a>
+<a href="<?php print "index.php?page=edit&contact_id=$contact[contact_id]" ?>">Edit</a>
 
 
 <?php require_once 'components/_footer.php' ?>

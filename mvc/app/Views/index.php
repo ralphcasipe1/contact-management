@@ -16,7 +16,11 @@
         <?php foreach ($contacts as $contact): ?>
             <tr>
                 <td></td>
-                <td><?php print $contact['name'] ?></td>
+                <td>
+                    <a href="<?php print "index.php?page=show&contact_id=$contact[contact_id]"?>">
+                        <?php print $contact['name'] ?>
+                    </a>
+                </td>
                 <td>
                     <a href="#">Edit</a>
                     <a href="#">Delete</a>
